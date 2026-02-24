@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## NiroTechs — Professional Startup Website
+
+Modern, fast, SEO-friendly website built with **Next.js + Tailwind CSS**.
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Customize brand details
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Update your name, email, phone, WhatsApp link, and domain in:
 
-## Learn More
+- `src/lib/site.ts`
 
-To learn more about Next.js, take a look at the following resources:
+Important:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Set `url` to your real domain (example: `https://nirotechs.com`)
+- (Optional) Set `NEXT_PUBLIC_SITE_URL` in production for sitemap/robots
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## What’s included
 
-## Deploy on Vercel
+- Home hero + CTA
+- Services (Website / App / AI)
+- Process
+- Featured work (placeholders; replace with your real projects)
+- FAQ
+- Contact form: with Formspree, messages go to your email (see below); otherwise opens visitor’s email app
+- WhatsApp CTA
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contact form → your email
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**Quick setup (2 minutes):**
+
+1. Go to [resend.com](https://resend.com) → Sign up (free)
+2. Go to **API Keys** → **Create API Key** → Copy the key
+3. In project root, create `.env.local`:
+   ```env
+   RESEND_API_KEY=re_xxxxxxxxxxxxx
+   RESEND_FROM_EMAIL=Contact Form <onboarding@resend.dev>
+   NEXT_PUBLIC_USE_CONTACT_API=true
+   ```
+4. Restart dev server (`npm run dev`)
+
+Now when someone submits Contact Us, the message goes directly to **satyapal.yadav@nirotechs.com** (set in `src/lib/site.ts`).
+
+**Alternative:** Use Formspree instead — see `.env.example` for details.
+
+## Build for production
+
+```bash
+npm run build
+npm start
+```
+

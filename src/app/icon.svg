@@ -1,0 +1,26 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cubeFace" x1="16" y1="10" x2="48" y2="52" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6366F1"/>
+      <stop offset="1" stop-color="#22D3EE"/>
+    </linearGradient>
+    <linearGradient id="cubeEdge" x1="8" y1="6" x2="40" y2="44" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#020617"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background glow -->
+  <rect x="4" y="4" width="56" height="56" rx="18" fill="#020617"/>
+  <rect x="4" y="4" width="56" height="56" rx="18" fill="url(#cubeEdge)" fill-opacity="0.7"/>
+
+  <!-- Tilted cube -->
+  <g transform="translate(12,10) skewX(-10)">
+    <rect x="4" y="4" width="32" height="32" rx="10" fill="url(#cubeFace)"/>
+    <rect x="7" y="7" width="26" height="26" rx="8" fill="#020617" fill-opacity="0.92"/>
+    <text x="20" y="26" text-anchor="middle" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="16" font-weight="700" fill="#f9fafb">
+      N
+    </text>
+  </g>
+</svg>
+
