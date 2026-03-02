@@ -31,7 +31,7 @@ export function Footer() {
             <ul className="space-y-2 text-sm text-slate-600">
               <li>
                 <a className="hover:text-slate-900" href={`mailto:${siteConfig.contact.email}`}>
-                  {siteConfig.contact.email}
+                  info@nirotechs.com
                 </a>
               </li>
               <li>
