@@ -1,24 +1,14 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image"; // ✅ added
 import { useState } from "react";
 
 import { Container } from "@/components/Container";
 import { cn } from "@/lib/cn";
 import { navLinks, siteConfig } from "@/lib/site";
 
-function LogoMark({ className }: { className?: string }) {
-  return (
-    <div className={cn("grid size-9 place-items-center", className)} aria-hidden="true">
-      <div className="logo-spin relative h-8 w-8 -rotate-6 rounded-[1rem] bg-gradient-to-br from-indigo-500 to-sky-400 shadow-[0_12px_30px_rgba(15,23,42,0.25)] ring-1 ring-indigo-200/80">
-        <div className="absolute inset-px rounded-[0.9rem] bg-white" />
-        <div className="relative m-[3px] flex h-[calc(100%-6px)] w-[calc(100%-6px)] items-center justify-center rounded-[0.75rem] bg-slate-900 text-white">
-          <span className="text-sm font-semibold tracking-tight">N</span>
-        </div>
-      </div>
-    </div>
-  );
-}
+// ❌ LogoMark removed (not needed anymore)
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -30,13 +20,25 @@ export function Header() {
       <Container className="flex h-16 min-w-0 items-center justify-between gap-2 sm:gap-3">
         <Link
           href="/"
-          className="group flex min-w-0 shrink items-center gap-2 sm:gap-3"
+          className="group flex min-w-0 shrink items-center gap-1 sm:gap-3"
           onClick={closeMenu}
         >
-          <LogoMark className="shrink-0" />
-          <div className="min-w-0 leading-tight">
-            <div className="truncate text-sm font-semibold tracking-tight text-slate-900">{siteConfig.name}</div>
-            <div className="hidden truncate text-xs text-slate-500 sm:block">{siteConfig.tagline}</div>
+          {/* ✅ YOUR IMAGE LOGO */}
+          <Image
+            src="/newlogo1.png"
+            alt="Logo"
+            width={144}
+            height={144}
+            className="shrink-0 object-contain mt-3"
+          />
+
+          <div className="min-w-0 leading-tight -ml-13">
+            <div className="truncate text-sm font-semibold tracking-tight text-slate-900">
+              {siteConfig.name}
+            </div>
+            <div className="hidden truncate text-xs text-slate-500 sm:block">
+              {siteConfig.tagline}
+            </div>
           </div>
         </Link>
 
@@ -110,4 +112,3 @@ export function Header() {
     </header>
   );
 }
-

@@ -34,7 +34,7 @@ const caseStudies = [
         { label: "Payment Integration", value: "Razorpay" },
         { label: "User Experience", value: "Mobile Optimized" },
     ],
-    image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1400&q=80",
+    image: "/tajimag.png",
     link: "https://taajfood.nirotechs.com/",
     linkLabel: "View project →",
     stack: ["MongoDB", "Express.js", "React.js", "Node.js", "Cloudinary", "Razorpay", "WhatsApp API"],
@@ -94,7 +94,7 @@ export default function CaseStudies() {
                   src={cs.image}
                   alt={cs.title}
                   fill
-                  className="object-cover transition-transform duration-500 hover:scale-105"
+                  className="object-contain transition-transform duration-500 hover:scale-105"
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 {/* Tag badge */}
