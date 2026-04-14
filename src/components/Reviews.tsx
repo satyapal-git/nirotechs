@@ -1,6 +1,3 @@
-// components/Reviews.tsx
-// Add this section to your homepage (page.tsx) below the Featured Work section
-
 "use client";
 
 import { useState } from "react";
@@ -12,7 +9,7 @@ const reviews = [
     role: "Founder, QuickServe India",
     avatar: "RS",
     avatarBg: "bg-blue-100 text-blue-700",
-    rating: 5,
+    rating: 4.5,
     text: "NiroTechs built our entire website from scratch in under 2 weeks. The design was clean, modern, and exactly what we envisioned. Our leads doubled within the first month of launch. Highly recommend!",
     service: "Website Development",
   },
@@ -32,7 +29,7 @@ const reviews = [
     role: "Co-founder, LogiTrack App",
     avatar: "AV",
     avatarBg: "bg-green-100 text-green-700",
-    rating: 5,
+    rating: 3.5,
     text: "They took our rough idea and turned it into a polished Flutter app in about 4 weeks. The code quality is excellent and the UI feels premium. We've already got 500+ downloads and great user reviews.",
     service: "Mobile App Development",
   },
@@ -42,7 +39,7 @@ const reviews = [
     role: "Marketing Head, FitLife Studio",
     avatar: "SP",
     avatarBg: "bg-purple-100 text-purple-700",
-    rating: 5,
+    rating: 4.5,
     text: "The AI chatbot they built for us is incredible. It handles customer queries 24/7, books trial classes automatically, and has cut our response time to zero. Best ROI investment we've made.",
     service: "AI & Automation",
   },
@@ -52,7 +49,7 @@ const reviews = [
     role: "Director, TechBridge Solutions",
     avatar: "KJ",
     avatarBg: "bg-amber-100 text-amber-700",
-    rating: 5,
+    rating: 4,
     text: "Professional, fast, and genuinely cares about the outcome. NiroTechs redesigned our corporate website and the results speak for themselves — better SEO, more inquiries, and a brand we're proud of.",
     service: "Website Revamp",
   },
@@ -71,19 +68,39 @@ const reviews = [
 function StarRating({ count }: { count: number }) {
   return (
     <div className="flex gap-0.5">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <svg
-          key={i}
-          width="14"
-          height="14"
-          viewBox="0 0 24 24"
-          fill={i < count ? "#111" : "none"}
-          stroke={i < count ? "#111" : "#d4d4d4"}
-          strokeWidth="2"
-        >
-          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-        </svg>
-      ))}
+      {Array.from({ length: 5 }).map((_, i) => {
+        const isFull = i + 1 <= count;
+        const isHalf = i < count && i + 1 > count;
+
+        return (
+          <svg
+            key={i}
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            strokeWidth="2"
+            stroke={isFull || isHalf ? "#111" : "#d4d4d4"}
+          >
+            <defs>
+              <linearGradient id={`half-${i}`}>
+                <stop offset="50%" stopColor="#111" />
+                <stop offset="50%" stopColor="transparent" />
+              </linearGradient>
+            </defs>
+
+            <polygon
+              points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"
+              fill={
+                isFull
+                  ? "#111"
+                  : isHalf
+                  ? `url(#half-${i})`
+                  : "none"
+              }
+            />
+          </svg>
+        );
+      })}
     </div>
   );
 }
@@ -91,7 +108,6 @@ function StarRating({ count }: { count: number }) {
 export default function Reviews() {
   const [activeIdx, setActiveIdx] = useState(0);
 
-  // Mobile: show one at a time. Desktop: show grid.
   return (
     <section className="py-5" id="reviews">
       <div className="max-w-6xl mx-auto px-6">
@@ -112,22 +128,26 @@ export default function Reviews() {
         {/* Summary bar */}
         <div className="flex flex-wrap items-center gap-6 mb-12 p-6 bg-white rounded-2xl border border-neutral-100 shadow-sm">
           <div className="flex items-center gap-3">
-            <span className="text-4xl font-bold text-neutral-900">5.0</span>
+            <span className="text-4xl font-bold text-neutral-900">4.5</span>
             <div>
-              <StarRating count={5} />
+              <StarRating count={4.5} />
               <p className="text-xs text-neutral-400 mt-1">
                 Average rating
               </p>
             </div>
           </div>
+
           <div className="w-px h-10 bg-neutral-200 hidden sm:block" />
+
           <div>
             <p className="text-2xl font-bold text-neutral-900">
               {reviews.length}+
             </p>
             <p className="text-xs text-neutral-400">Happy clients</p>
           </div>
+
           <div className="w-px h-10 bg-neutral-200 hidden sm:block" />
+
           <div>
             <p className="text-2xl font-bold text-neutral-900">100%</p>
             <p className="text-xs text-neutral-400">Would recommend</p>
@@ -141,23 +161,20 @@ export default function Reviews() {
               key={review.id}
               className="bg-white rounded-2xl p-6 border border-neutral-100 shadow-sm flex flex-col gap-4 hover:shadow-md transition-shadow duration-200"
             >
-              {/* Rating */}
               <StarRating count={review.rating} />
 
-              {/* Quote */}
               <p className="text-neutral-600 leading-relaxed text-sm flex-1">
                 "{review.text}"
               </p>
 
-              {/* Divider */}
               <div className="border-t border-neutral-100 pt-4">
                 <div className="flex items-center gap-3">
-                  {/* Avatar */}
                   <div
                     className={`w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold ${review.avatarBg}`}
                   >
                     {review.avatar}
                   </div>
+
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-semibold text-neutral-900 truncate">
                       {review.name}
@@ -166,7 +183,7 @@ export default function Reviews() {
                       {review.role}
                     </p>
                   </div>
-                  {/* Service badge */}
+
                   <span className="text-xs bg-neutral-100 text-neutral-500 px-2.5 py-1 rounded-full font-medium whitespace-nowrap hidden sm:inline">
                     {review.service}
                   </span>
@@ -186,18 +203,6 @@ export default function Reviews() {
             className="inline-flex items-center gap-2 bg-neutral-900 text-white font-semibold px-8 py-4 rounded-full hover:bg-neutral-700 transition-colors duration-200"
           >
             Get a free consultation
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
           </a>
         </div>
       </div>
