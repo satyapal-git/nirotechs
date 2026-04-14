@@ -8,6 +8,9 @@ import { Container } from "@/components/Container";
 import { siteConfig } from "@/lib/site";
 import { featuredWork } from "@/lib/content";
 
+import CaseStudies  from "@/components/CaseStudies";
+import Reviews from "@/components/Reviews";
+
 const reveal = { hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } };
 
 function Reveal({
@@ -146,12 +149,14 @@ export default function HomePage() {
             <div className="relative aspect-video">
               <video
                 className="h-full w-full object-cover"
-                controls
-                preload="metadata"
-                poster="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80"
+                autoPlay
+                loop
+                muted
+                playsInline
+                
               >
                 <source
-                  src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+                  src="/nirovid.mp4"
                   type="video/mp4"
                 />
               </video>
@@ -202,6 +207,20 @@ export default function HomePage() {
               Start your project
             </Link>
           </div>
+        </Container>
+      </section>
+
+      {/* Case Studies */}
+      <section className="border-t border-black/5">
+        <Container className="py-16 sm:py-20">
+          <CaseStudies />
+        </Container>
+      </section>
+
+      {/* Reviews */}
+      <section className="border-t border-black/5">
+        <Container className="py-16 sm:py-20">
+          <Reviews />
         </Container>
       </section>
     </div>
