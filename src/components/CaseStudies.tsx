@@ -35,7 +35,7 @@ const caseStudies = [
         { label: "User Experience", value: "Mobile Optimized" },
     ],
     image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1400&q=80",
-    link: "#", // replace with live link if deployed
+    link: "https://taajfood.nirotechs.com/",
     linkLabel: "View project →",
     stack: ["MongoDB", "Express.js", "React.js", "Node.js", "Cloudinary", "Razorpay", "WhatsApp API"],
     },
